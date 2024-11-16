@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clash Court Sports</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+                     }
+
+        /* Basic styling */
+        body {
+            background-color: #FFE7B4;
+        }
+
+        /* Navbar */
+        .navbar {
+                background-color: #553d1d;
+
+            padding: 15px;
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+        }
+
+        .navbar .title {
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .navbar .nav-links a {
+            color: #fff;
+            margin-left: 20px;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 400;
+        }
+
+        /* Hamburger menu */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .hamburger div {
+            width: 30px;
+            height: 3px;
+            background-color: #fff;
+        }
+
+        /* Hero section with wave effect */
+        .curved-container {
+            position: relative;
+            width: 100%;
+            height: 80vh;
+            overflow: hidden;
+            background-color: #fff5e6;
+        }
+
+        .background-image {
+    width: 100%;
+    height: 140%;
+    object-fit: cover;
+    display: block;
+    position: absolute;
+    top: 0;
+   z-index:1;
+    mix-blend-mode: multiply; /* Apply multiply blend mode */
+}
+
+
+.image-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #553D1D; /* Color overlay */
+            opacity: 0.5; /* Optional: Adjust opacity to control the strength of the tint */
+            z-index: 2; /* Place overlay above the image */
+        }
+
+        .sine-wave {
+            position: absolute;
+            bottom: -45px; /* Ensures no visible line below */
+            left: 0;
+            width: 100%;
+            height: 220px;
+            background: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="100%" height="200" viewBox="0 0 1200 200" preserveAspectRatio="none"%3E%3Cpath fill="%23FFE7B4" d="M0,100 C300,300 900,-100 1200,100 L1200,200 L0,200 Z" /%3E%3C/svg%3E');
+            background-repeat: no-repeat;
+            background-size: cover;
+            z-index:3;
+        }
+
+        .content {
+            background-color: #FFE7B4;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            text-align: left;
+        }
+
+        .content .text {
+            max-width: 600px;
+            font-size: 18px;
+            color: #333;
+            line-height: 1.6;
+            font-weight: 400;
+        }
+
+        .content .text h2 {
+           
+            font-size: 36px; /* Set font size to 36px */
+            font-weight: bold; /* Make the font bold */
+            color: #000000; /* Set text color to black */
+            font-family: 'Oswald', sans-serif; /* Set font family to Oswald */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Add drop shadow */
+
+        }
+
+  
+    
+
+        /* Each image should be half the height of the content */
+        .photo {
+            width: 100%;  /* Makes the images take up nearly half the space */
+            height: 100%;  /* Set the height to half of the content's height */
+            object-fit: cover;
+             transition: margin 0.3s ease-in-out; 
+        }
+
+
+
+
+ .registration {
+            text-align: center;
+            padding: 40px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .registration h2 {
+            font-size: 36px; /* Set font size to 36px */
+            font-weight: bold; /* Make the font bold */
+            color: #000000; /* Set text color to black */
+            font-family: 'Oswald', sans-serif; /* Set font family to Oswald */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Add drop shadow */
+            margin-bottom: 50px;
+
+        }
+
+        .registration-photos {
+            display: flex;
+            justify-content: space-between;
+            gap: 35px;
+        }
+
+        .registration-photo {
+            position: relative;
+            width: 300px; /* Fixed width */
+            height: 300px; /* Fixed height */
+            overflow: hidden;
+            object-fit: cover;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .registration-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .registration-photo:hover {
+            transform: scale(1.05); /* Slight zoom on hover */
+        }
+
+        .text-container {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            width: 90%;
+        }
+
+        .text-white {
+            color: #FFFFFF;
+            font-size: 22px;
+            margin-bottom: 10px;
+            font-family: 'Quattrocento', serif;
+            font-weight: bold;
+        }
+
+        .text-orange {
+            color: #FFFFFF;
+            font-size: 22px;
+            font-weight: bold;
+            font-family: 'Quattrocento', serif;
+            padding: 5px;
+            border-radius: 10px;
+            display: inline-block;
+            background-color: #B95B00;
+            margin-bottom:20px;
+        }
+
+        .content p{
+            font-family: 'Quattrocento', serif;
+            font-size: 24px;
+            margin-bottom:20px;
+        }
+
+        .photo-container{
+            margin-top: 239px;
+        }
+
+
+        .hero-text {
+    position: absolute;
+    top: 50%;
+    left: 270px; /* Center text horizontally */
+    transform: translate(-50%, -50%);
+    text-align: center;
+    font-size: 1.2rem; /* Default large font size */
+    font-weight: bold;
+    font-family: 'Oswald', sans-serif;
+    padding-left: 10px;
+    background-image: linear-gradient(0deg, #FFE7B4 0%, #FFFFFF 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    z-index: 3;
+}
+
+/* Subheading Text */
+.subheading-text {
+    position: absolute;
+    top: 60%;
+    left: 300px; /* Center subheading horizontally */
+    transform: translateX(-50%);
+    font-size: 1.3rem; /* Default font size for subheading */
+    color: #FFFFFF;
+    font-family: 'Quattrocento', serif;
+    z-index: 3;
+    width: 90%;
+    text-align: center;
+}
+
+/* Button Container */
+.button-container {
+    position: absolute;
+    top: 70%;
+    left: 155px; /* Center button container horizontally */
+    transform: translateX(-50%);
+    display: flex;
+    gap: 20px;
+    z-index: 3;
+}
+
+/* Button Styles */
+.button {
+    padding: 12px 24px;
+    border-radius: 50px;
+    font-size: 1rem; /* Default font size */
+    font-family: 'Quattrocento', serif;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Join Now Button */
+.join-now {
+    background-color: #B95B00;
+    color: #FFFFFF;
+    border: none;
+}
+
+/* FAQ Button */
+.faq-button {
+    background-color: transparent;
+    color: #FFFFFF;
+    border: 2px solid #FFFFFF;
+}
+
+/* Hover Effects */
+.button:hover {
+    transform: scale(1.1);
+}
+
+
+        /* Responsive styling */
+        @media (max-width: 768px) {
+
+
+
+            .sine-wave {
+            position: absolute;
+            bottom: -35px; /* Ensures no visible line below */
+            left: 0;
+            width: 100%;
+            height: 220px;
+            background: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="100%" height="200" viewBox="0 0 1200 200" preserveAspectRatio="none"%3E%3Cpath fill="%23FFE7B4" d="M0,100 C300,300 900,-100 1200,100 L1200,200 L0,200 Z" /%3E%3C/svg%3E');
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+            .photo-container {
+    margin-top: 0px;
+}
+
+
+
+           .content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .content .photo-container {
+        flex-direction: row; /* Ensures they stay in a row */
+        gap: 0px; /* Maintain space between the images */
+        width:100%;
+    }
+
+    .content .photo {
+        width:100%; /* Keep images in a row with margin */
+        height: 100%; /* Maintain the height */
+transition: margin 0.3s ease-in-out; 
+    }
+
+    .content img {
+        width: 100%;
+        height: auto; /* Ensures the images scale proportionally */
+    }
+
+    .sine-wave {
+        height: 160px;
+        background-size: 100% 160px;
+    }
+
+    .background-image {
+        height: 100%;
+    }
+
+    /* Show the hamburger menu on small screens */
+    .hamburger {
+        display: flex;
+    }
+
+    /* Hide the navbar links by default on small screens */
+    .navbar .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        right: 0px;
+        background-color: #553d1d;
+        padding: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Show the links when the menu is open */
+    .navbar.active .nav-links {
+        display: flex;
+        z-index: 999;
+    }
+
+    /* Adjust link styles for the mobile navbar */
+    .navbar .nav-links a {
+        margin: 10px 0;
+        font-size: 20px;
+    }
+
+
+ .registration-photos {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .registration-photo {
+        width: 80%;
+        height: 50%;
+        margin-bottom: 20px;
+    }
+
+  .registration-photo-container {
+                width: 80%;
+                margin-bottom: 20px;
+            }
+
+
+
+
+            .hero-text {
+        font-size: 1.2rem;
+        left: 30%;
+    }
+
+.subheading-text {
+        left: 47%;
+        font-size: 1.2rem;
+    }
+        }
+
+
+        @media screen and (max-width: 480px) {
+
+            .hero-text {
+        font-size: 0.5rem;
+        left: 28%;
+    }
+
+
+    .subheading-text {
+        left: 48.5%;
+        font-size: 1.0rem;
+    }
+
+    .button-container {
+    
+    left: 128px;
+}
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="title"> <img src="logo.svg" alt="Registration Image 1">
+</div>
+        <div class="nav-links">
+            <a href="#" style="color:#FFE7B4">Home</a>
+            <a href="#">Login</a>
+            <a href="#">Join Now</a>
+            <a href="#">FAQ</a>
+        </div>
+        <!-- Hamburger icon -->
+        <div class="hamburger" onclick="toggleMenu()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+
+    <!-- Hero section with wave effect -->
+    <div class="curved-container">
+        <img src="hero.jpg" alt="Background Image" class="background-image" />
+        <div class="image-overlay"></div>
+        <div class="sine-wave"></div>
+        <div class="hero-text">
+            <h1>CLASH COURT SPORTS</h1>
+        </div>
+        <div class="subheading-text">
+            Long Island’s Premier Pick-Up Tennis & Pickleball League
+        </div>
+
+        <div class="button-container">
+            <!-- Join Now Button -->
+            <button class="button join-now">Join Now</button>
+            <!-- FAQ Button -->
+            <button class="button faq-button">FAQ</button>
+        </div>
+    </div>
+
+    <!-- Content section -->
+    <div class="content">
+        <div class="text">
+            <h2>Welcome to Clash Court Sports</h2>
+            <p>
+                At Clash Court Sports, we are dedicated to providing everyone with tennis and pickleball partners.
+                It's simple... Register, Connect with Opponents, Play and Record Scores.
+            </p>
+            <p>
+                Whether you're a beginner or a seasoned player looking to compete, we have something for you.
+            </p>
+            <p>
+                Come join us and be a part of our tennis and pickleball community. Meet new friends, challenge yourself, and have a blast. We can't wait to see you on the courts!
+            </p>
+        </div>
+        <div class="photo-container">
+            <img src="TwoSet.png" alt="Sport Image 1" class="photo">
+           
+        </div>
+    </div>
+
+
+
+  <div class="registration">
+        <h2>REGISTRATION</h2>
+        <div class="registration-photos">
+            <div class="registration-photo">
+                <img src="Singles.png" alt="Registration Image 1">
+                <div class="text-container">
+                    <div class="text-white">Play Singles - $50</div>
+                    <div class="text-orange">Register for Spring 2024</div>
+                </div>
+            </div>
+            <div class="registration-photo">
+                <img src="Doubles.png" alt="Registration Image 2">
+                <div class="text-container">
+                    <div class="text-white">Play Doubles - $80</div>
+                    <div class="text-orange">Register for Spring 2024</div>
+                </div>
+            </div>
+            <div class="registration-photo">
+                <img src="Rules.png" alt="Registration Image 3">
+                <div class="text-container">
+                    <div class="text-white">View Rules</div>
+                    <div class="text-orange">Learn More</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <script>
+        function toggleMenu() {
+            const navbar = document.querySelector('.navbar');
+            navbar.classList.toggle('active');
+        }
+
+
+	  window.onload = function() {
+        const photos = document.querySelectorAll('.photo');
+        const secondPhoto = photos[1]; // Get the second photo
+        const firstPhotoHeight = photos[0].clientHeight; // Get the height of the first photo
+
+                secondPhoto.style.marginTop = (firstPhotoHeight / 2) + 'px';
+
+         
+    };
+
+   
+    </script>
+</body>
+</html>
